@@ -4,8 +4,8 @@ project(aizo2)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(aizo2 main.cpp
-        Algorithms.cpp
-        Algorithms.h
+        service/Algorithms.cpp
+        service/Algorithms.h
         utils/ConsoleManager.cpp
         utils/ConsoleManager.h
         service/AutoPerformanceTester.cpp

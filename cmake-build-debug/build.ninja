@@ -55,11 +55,11 @@ build CMakeFiles/aizo2.dir/main.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir
 
-build CMakeFiles/aizo2.dir/Algorithms.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/Algorithms.cpp || cmake_object_order_depends_target_aizo2
-  DEP_FILE = CMakeFiles\aizo2.dir\Algorithms.cpp.obj.d
+build CMakeFiles/aizo2.dir/service/Algorithms.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/service/Algorithms.cpp || cmake_object_order_depends_target_aizo2
+  DEP_FILE = CMakeFiles\aizo2.dir\service\Algorithms.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
-  OBJECT_FILE_DIR = CMakeFiles\aizo2.dir
+  OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\service
 
 build CMakeFiles/aizo2.dir/utils/ConsoleManager.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/utils/ConsoleManager.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\utils\ConsoleManager.cpp.obj.d
@@ -105,7 +105,7 @@ build CMakeFiles/aizo2.dir/model/Graph.cpp.obj: CXX_COMPILER__aizo2_unscanned_De
 #############################################
 # Link the executable aizo2.exe
 
-build aizo2.exe: CXX_EXECUTABLE_LINKER__aizo2_Debug CMakeFiles/aizo2.dir/main.cpp.obj CMakeFiles/aizo2.dir/Algorithms.cpp.obj CMakeFiles/aizo2.dir/utils/ConsoleManager.cpp.obj CMakeFiles/aizo2.dir/service/AutoPerformanceTester.cpp.obj CMakeFiles/aizo2.dir/service/Controller.cpp.obj CMakeFiles/aizo2.dir/utils/DataGenerator.cpp.obj CMakeFiles/aizo2.dir/utils/FileManager.cpp.obj CMakeFiles/aizo2.dir/model/Graph.cpp.obj
+build aizo2.exe: CXX_EXECUTABLE_LINKER__aizo2_Debug CMakeFiles/aizo2.dir/main.cpp.obj CMakeFiles/aizo2.dir/service/Algorithms.cpp.obj CMakeFiles/aizo2.dir/utils/ConsoleManager.cpp.obj CMakeFiles/aizo2.dir/service/AutoPerformanceTester.cpp.obj CMakeFiles/aizo2.dir/service/Controller.cpp.obj CMakeFiles/aizo2.dir/utils/DataGenerator.cpp.obj CMakeFiles/aizo2.dir/utils/FileManager.cpp.obj CMakeFiles/aizo2.dir/model/Graph.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\aizo2.dir

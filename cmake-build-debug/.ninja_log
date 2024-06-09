@@ -1,6 +1,6 @@
 # ninja log v5
-822	1013	7395950186428974	aizo2.exe	e03e1230fa67b9c1
-8	802	7395950184373952	CMakeFiles/aizo2.dir/main.cpp.obj	61dc6d474de4c9d0
+526	678	7395951550201582	aizo2.exe	e03e1230fa67b9c1
+6	525	7395951548719810	CMakeFiles/aizo2.dir/main.cpp.obj	61dc6d474de4c9d0
 8	786	7393836101284674	CMakeFiles/aizo2.dir/GraphMatrix.cpp.obj	198d5d4647be1afc
 13	795	7393836101389673	CMakeFiles/aizo2.dir/GraphList.cpp.obj	2a03c06589f2f51f
 33	174	7395759891159074	CMakeFiles/aizo2.dir/service/AutoPerformanceTester.cpp.obj	578cc2d530fcbbcd
@@ -13,9 +13,8 @@
 19	779	7395950184133976	CMakeFiles/aizo2.dir/utils/DataGenerator.cpp.obj	f61276709f15546e
 12	85	7395939999461288	CMakeFiles/aizo2.dir/service/Controller.cpp.obj	2430f95459b6a49d
 13	786	7395950184204001	CMakeFiles/aizo2.dir/utils/ConsoleManager.cpp.obj	a4051ffa0069d667
-8	538	7395950247460297	CMakeFiles/aizo2.dir/main.cpp.obj	61dc6d474de4c9d0
-539	686	7395950248885287	aizo2.exe	e03e1230fa67b9c1
-6	529	7395950624654826	CMakeFiles/aizo2.dir/main.cpp.obj	61dc6d474de4c9d0
-530	682	7395950626124836	aizo2.exe	e03e1230fa67b9c1
-6	525	7395951548719810	CMakeFiles/aizo2.dir/main.cpp.obj	61dc6d474de4c9d0
-526	678	7395951550201582	aizo2.exe	e03e1230fa67b9c1
+43	859	7395968412107330	CMakeFiles/aizo2.dir/utils/ConsoleManager.cpp.obj	a4051ffa0069d667
+51	860	7395968412122331	CMakeFiles/aizo2.dir/model/Graph.cpp.obj	446fbba966823ef3
+29	916	7395968412682338	CMakeFiles/aizo2.dir/main.cpp.obj	61dc6d474de4c9d0
+7	887	7395970693229466	CMakeFiles/aizo2.dir/service/Algorithms.cpp.obj	c89d329b433871c6
+888	1086	7395970695171879	aizo2.exe	d2c34d4f6e8a44c8
