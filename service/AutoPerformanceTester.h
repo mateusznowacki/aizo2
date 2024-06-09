@@ -8,6 +8,8 @@
 
 class AutoPerformanceTester {
 
+public:
+    void runAutoTests();
 };
 
 

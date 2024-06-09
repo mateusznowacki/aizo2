@@ -4,15 +4,15 @@
 using namespace std;
 
 #include "ConsoleManager.h"
+#include <string>
 
 
-
-void ConsoleManager::printMenu(){
-        cout << "Wybierz opcje z menu" << endl;
-        cout << "1. Generowanie grafow do pliku" << endl;
-        cout << "2. Sprawdzanie poprawnosci algorytmow" << endl;
-        cout << "3. Pomiary automatyczne i generowanie wynikow" << endl;
-        cout << "4. Wyjscie" << endl;
+void ConsoleManager::printMenu() {
+    cout << "Wybierz opcje z menu" << endl;
+    cout << "1. Generowanie grafow do pliku" << endl;
+    cout << "2. Sprawdzanie poprawnosci algorytmow" << endl;
+    cout << "3. Pomiary automatyczne i generowanie wynikow" << endl;
+    cout << "4. Wyjscie" << endl;
 }
 
 
@@ -53,28 +53,28 @@ int ConsoleManager::printMaxFlowAlgorithmsOptions() {
 }
 
 int ConsoleManager::printGetVertexCount() {
-    cout << "Podaj liczbe wierzcholkow: ";
+    cout << "Podaj liczbe wierzcholkow: "<<endl;
     int choice = 0;
     cin >> choice;
     return choice;
 }
 
 int ConsoleManager::printGetDensity() {
-    cout << "Podaj gestosc grafu w procentach: ";
+    cout << "Podaj gestosc grafu w procentach: "<<endl;
     int choice = 0;
     cin >> choice;
     return choice;
 }
 
 int ConsoleManager::printGetEdgeMaxWeight() {
-    cout << "Podaj maksymalna wage krawedzi: ";
-     int choice = 0;
+    cout << "Podaj maksymalna wage krawedzi: "<<endl;
+    int choice = 0;
     cin >> choice;
     return choice;
 }
 
 // Drukowanie macierzy incydencji
-void ConsoleManager::printAdjMatrix(int** adjMatrix, int vertices) {
+void ConsoleManager::printAdjMatrix(int **adjMatrix, int vertices) {
     for (int i = 0; i < vertices; ++i) {
         for (int j = 0; j < vertices; ++j) {
             std::cout << adjMatrix[i][j] << " ";
@@ -84,15 +84,23 @@ void ConsoleManager::printAdjMatrix(int** adjMatrix, int vertices) {
 }
 
 // Drukowanie listy następników
-void ConsoleManager::printAdjList(Graph::Node** adjList, int vertices) {
+void ConsoleManager::printAdjList(Graph::Node **adjList, int vertices) {
     for (int i = 0; i < vertices; ++i) {
         std::cout << i << ": ";
-        Graph::Node* head = adjList[i];
+        Graph::Node *head = adjList[i];
         while (head != nullptr) {
             std::cout << "(" << head->vertex << ", " << head->weight << ") ";
             head = head->next;
         }
         std::cout << std::endl;
     }
+}
+
+string ConsoleManager::printGetFilename() {
+    cout << "Podaj nazwe pliku: "<<endl;
+    string name;
+    cin >> name;
+    name.append(".txt");
+    return name;
 }
 

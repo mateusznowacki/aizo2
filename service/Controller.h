@@ -6,15 +6,13 @@
 #define AIZO2_CONTROLLER_H
 
 
+#include <chrono>
+
 class Controller {
     public:
+    std::chrono::microseconds runGraphAlgorithm(int algorithmType, int vertexCount, int density, int reprezentationType);
    void generateGraphsToFile();
-//    void getDataFromFileAndSort();
-//    void generateOwnDataAndSort();
-//    void *getArray();
-//    void runSortingAlgorithmVerification();
-//    auto runSortingAlgorithm();
-//    void generateArraysToFile();
+
 };
 
 

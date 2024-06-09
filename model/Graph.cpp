@@ -89,6 +89,26 @@ int Graph::getVertices() {
     return vertices;
 }
 
+// Pobieranie liczby wierzchołków dla grafu skierowanego
+int Graph::getDensity() {
+    return density;
+}
+
+int* Graph::getTwoDifferentVertices() {
+    if (vertices < 2) return nullptr;
+
+    srand(time(nullptr)); // Inicjalizacja generatora liczb losowych
+
+    int *vertices = new int[2];
+    vertices[0] = rand() % this->vertices;
+    do {
+        vertices[1] = rand() % this->vertices;
+    } while (vertices[1] == vertices[0]);
+
+    return vertices;
+
+}
+
 
 
 

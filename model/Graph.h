@@ -19,9 +19,11 @@ public:
     int** getAdjMatrix();
     Node** getAdjList();
     int getVertices();
+    int getDensity();
+    int *getTwoDifferentVertices();
 
 private:
-
+    int density;
     int vertices; // Liczba wierzchołków
     int **adjMatrix; // Macierz sąsiedztwa
     Node **adjList; // Lista następników

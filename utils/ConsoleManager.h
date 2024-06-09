@@ -3,7 +3,10 @@
 #define AIZO2_CONSOLEMANAGER_H
 
 #include <iostream>
+#include <string>
 #include "../model/Graph.h"
+
+using namespace std;
 
 class ConsoleManager {
     public:
@@ -29,6 +32,8 @@ class ConsoleManager {
 
      void printAdjMatrix(int** adjMatrix, int vertices);
      void printAdjList(Graph::Node** adjList, int vertices);
+
+    string printGetFilename();
 };
 
 
