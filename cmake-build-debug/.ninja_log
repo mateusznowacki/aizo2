@@ -18,3 +18,5 @@
 29	916	7395968412682338	CMakeFiles/aizo2.dir/main.cpp.obj	61dc6d474de4c9d0
 7	887	7395970693229466	CMakeFiles/aizo2.dir/service/Algorithms.cpp.obj	c89d329b433871c6
 888	1086	7395970695171879	aizo2.exe	d2c34d4f6e8a44c8
+6	872	7395974776841394	CMakeFiles/aizo2.dir/utils/DataGenerator.cpp.obj	f61276709f15546e
+873	1046	7395974778536378	aizo2.exe	d2c34d4f6e8a44c8
