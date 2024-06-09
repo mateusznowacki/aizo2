@@ -23,3 +23,8 @@
 12	1206	7396752557494397	CMakeFiles/aizo2.dir/service/Algorithms.cpp.obj	f1b20e533810c351
 29	1245	7396752557899397	CMakeFiles/aizo2.dir/utils/DataGenerator.cpp.obj	a473d571392b6438
 1245	1741	7396752562754765	aizo2.exe	16953eedaaf88e11
+17	789	7396803421645732	CMakeFiles/aizo2.dir/main.cpp.obj	a7728af90f8cbede
+23	820	7396803421970735	CMakeFiles/aizo2.dir/service/AutoPerformanceTester.cpp.obj	9353710a86bde461
+29	839	7396803422165737	CMakeFiles/aizo2.dir/service/Controller.cpp.obj	7af8663f729c0dc
+33	919	7396803422970739	CMakeFiles/aizo2.dir/utils/FileManager.cpp.obj	7c4731e2d2381f21
+919	1421	7396803427910756	aizo2.exe	16953eedaaf88e11

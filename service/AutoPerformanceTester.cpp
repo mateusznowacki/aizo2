@@ -13,22 +13,21 @@ void AutoPerformanceTester::runAutoTests() {
     std:chrono::microseconds time ;
     int *vertexCount = fileManager.getConfigFileGraphSize();
     int iterations = fileManager.getConfigFileIterations();
-    int algorithmsAmount = 5;
+    int algorithmType =fileManager.getConfigFileAlgorithmType();
     int reprezentationTypesAmount = 2;
     int density[] = {25, 50, 99};
 
-    for (int i = 1; i <= algorithmsAmount; ++i) { // 5 - ilosc algorytmow
         for (int j = 0; j < 7; ++j) {// 7 - ilosc rozmiarow grafu
             for (int k = 0; k < 3; ++k) {// 3 - ilosc gestosci
                 for (int l = 1; l <= reprezentationTypesAmount; ++l) {
                     for (int m = 0; m < iterations; ++m) {
-                        time = controller.runGraphAlgorithm(i, vertexCount[j], density[k], l);
-                        fileManager.saveResultToFile(time, i, l, density[k], vertexCount[j]);
+                        time = controller.runGraphAlgorithm(algorithmType, vertexCount[j], density[k], l);
+                        fileManager.saveResultToFile(time, algorithmType, l, density[k], vertexCount[j]);
                     }
                 }
             }
         }
-    }
+
 
 }
 

@@ -195,3 +195,33 @@ int *FileManager::getConfigFileGraphSize() {
     return sizes;
 }
 
+int FileManager::getConfigFileAlgorithmType() {
+    ifstream inputFile("config.txt");
+    // Obsługa błędu w przypadku nieudanego otwarcia pliku
+    if (!inputFile.is_open()) {
+        cerr << "Nie udało się otworzyć pliku: " << endl;
+        return -1; // Zwróć -1 w przypadku błędu
+    }
+
+    string line;
+    while (getline(inputFile, line)) {
+        // Sprawdzenie, czy linia zawiera "iterations:"
+        if (line.find("type:") != string::npos) {
+            // Znaleziono linię z "iterations:", zwróć wartość po dwukropku
+            size_t colonPos = line.find(":");
+            string valueStr = line.substr(colonPos + 1);
+            // Konwertuj string na int i zwróć
+            try {
+                return stoi(valueStr);
+            } catch (...) {
+                cerr << "Błąd konwersji wartości 'iterations' na int." << endl;
+                return 0; // Zwróć 0 w przypadku błędu konwersji
+            }
+        }
+    }
+    // Nie znaleziono linii z "iterations:"
+    cerr << "Nie znaleziono linii z 'iterations:' w pliku: " << endl;
+    return 0; // Zwróć 0 jeśli nie znaleziono
+}
+
+

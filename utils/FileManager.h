@@ -15,6 +15,8 @@ public:
     void saveResultToFile(std::chrono::duration<int64_t, ratio<1, 1000000000>> time, int algorithm, int reprezentationType,int density, int size);
     int *getConfigFileGraphSize();
     int getConfigFileIterations();
+
+    int getConfigFileAlgorithmType();
 };
 
 #endif //AIZO2_FILEMANAGER_H
