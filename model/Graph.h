@@ -14,12 +14,11 @@ public:
     };
     Graph(int vertices);
     ~Graph();
-    void addEdge(int u, int v, int weight);
+    void addDirEdge(int u, int v, int weight);
+    void addUnDirEdge(int u, int v, int weight);
     int** getAdjMatrix();
     Node** getAdjList();
     int getVertices();
-    void printAdjMatrix();
-    void printAdjList();
 
 private:
 

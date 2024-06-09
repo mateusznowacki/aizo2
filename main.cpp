@@ -13,23 +13,34 @@ int main() {
     ConsoleManager consoleManager;
     DataGenerator generator;
 
-    int vertices = 6;
-    int density = 50;
 
-    // Generowanie grafu nieskierowanego
-    std::cout << "Generating undirected graph" << std::endl;
-    Graph* undirectedGraph = generator.generateRandomGraph(vertices, density);
+        int vertices = 6;
+        int density = 50;
 
-    // Wyświetlanie grafu nieskierowanego
-    std::cout << "Macierz sąsiedztwa (nieskierowany):" << std::endl;
-    consoleManager.printAdjMatrix(undirectedGraph->getAdjMatrix(), vertices);
+        // Generowanie grafu skierowanego
+        std::cout << "Generating directed graph" << std::endl;
+        Graph* directedGraph = generator.generateRandomDirGraph(vertices, density);
 
-    std::cout << "Lista następników (nieskierowany):" << std::endl;
-    consoleManager.printAdjList(undirectedGraph->getAdjList(), vertices);
+        // Wyświetlanie grafu skierowanego
+        std::cout << "Macierz sąsiedztwa (skierowany):" << std::endl;
+        consoleManager.printAdjMatrix(directedGraph->getAdjMatrix(), vertices);
 
-    delete undirectedGraph;
+        std::cout << "Lista następników (skierowany):" << std::endl;
+        consoleManager.printAdjList(directedGraph->getAdjList(), vertices);
 
-    return 0;
+        // Generowanie grafu nieskierowanego
+        std::cout << "Generating undirected graph" << std::endl;
+        Graph* undirectedGraph = generator.generateUnDirGraph(directedGraph);
+
+        // Wyświetlanie grafu nieskierowanego
+        std::cout << "Macierz sąsiedztwa (nieskierowany):" << std::endl;
+        consoleManager.printAdjMatrix(undirectedGraph->getAdjMatrix(), vertices);
+
+        std::cout << "Lista następników (nieskierowany):" << std::endl;
+        consoleManager.printAdjList(undirectedGraph->getAdjList(), vertices);
+
+        delete directedGraph;
+       delete undirectedGraph;
 
 
 

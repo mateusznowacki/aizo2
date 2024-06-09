@@ -295,5 +295,5 @@
 //    int vertexCount = console.printGetVertexCount(); // Pobranie liczby wierzchołków
 //    int density = console.printGetDensity(); // Pobranie gęstości grafu
 //
-//    generator.generateRandomGraph(vertexCount, density);
+//    generator.generateRandomDirGraph(vertexCount, density);
 //}

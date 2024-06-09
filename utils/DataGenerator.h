@@ -7,9 +7,8 @@
 class DataGenerator {
 
 public:
-    Graph *generateRandomGraph(int vertexCount, int density);
-
-  //  Graph *generateUndirectedGraphFromDirected(Graph *directedGraph);
+    Graph *generateRandomDirGraph(int vertexCount, int density);
+    Graph *generateUnDirGraph(Graph *dirGraph);
 };
 
 

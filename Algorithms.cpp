@@ -7,7 +7,7 @@
 //
 //// Implementacja algorytmu Prima dla reprezentacji macierzowej
 //void Algorithms::primMST(GraphMatrix& graph) {
-//    int vertices = graph.getVertices();
+//    int vertices = graph.getDirVertices();
 //    std::vector<int> key(vertices, INT_MAX);
 //    std::vector<bool> inMST(vertices, false);
 //    std::vector<int> parent(vertices, -1);
@@ -40,7 +40,7 @@
 //
 //// Implementacja algorytmu Kruskala dla reprezentacji macierzowej
 //void Algorithms::kruskalMST(GraphMatrix& graph) {
-//    int vertices = graph.getVertices();
+//    int vertices = graph.getDirVertices();
 //    std::vector<std::tuple<int, int, int>> edges;
 //
 //    for (int u = 0; u < vertices; ++u) {
@@ -74,7 +74,7 @@
 //
 //// Implementacja algorytmu Dijkstry dla reprezentacji macierzowej
 //void Algorithms::dijkstraShortestPath(GraphMatrix& graph, int startVertex) {
-//    int vertices = graph.getVertices();
+//    int vertices = graph.getDirVertices();
 //    std::vector<int> distance(vertices, INT_MAX);
 //    distance[startVertex] = 0;
 //
@@ -102,7 +102,7 @@
 //
 //// Implementacja algorytmu Bellmana-Forda dla reprezentacji macierzowej
 //void Algorithms::bellmanFordShortestPath(GraphMatrix& graph, int startVertex) {
-//    int vertices = graph.getVertices();
+//    int vertices = graph.getDirVertices();
 //    std::vector<int> distance(vertices, INT_MAX);
 //    distance[startVertex] = 0;
 //
