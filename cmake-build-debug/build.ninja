@@ -51,49 +51,49 @@ build cmake_object_order_depends_target_aizo2: phony || CMakeFiles/aizo2.dir
 
 build CMakeFiles/aizo2.dir/main.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/main.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\main.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir
 
 build CMakeFiles/aizo2.dir/service/Algorithms.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/service/Algorithms.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\service\Algorithms.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\service
 
 build CMakeFiles/aizo2.dir/utils/ConsoleManager.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/utils/ConsoleManager.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\utils\ConsoleManager.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\utils
 
 build CMakeFiles/aizo2.dir/service/AutoPerformanceTester.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/service/AutoPerformanceTester.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\service\AutoPerformanceTester.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\service
 
 build CMakeFiles/aizo2.dir/service/Controller.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/service/Controller.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\service\Controller.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\service
 
 build CMakeFiles/aizo2.dir/utils/DataGenerator.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/utils/DataGenerator.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\utils\DataGenerator.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\utils
 
 build CMakeFiles/aizo2.dir/utils/FileManager.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/utils/FileManager.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\utils\FileManager.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\utils
 
 build CMakeFiles/aizo2.dir/model/Graph.cpp.obj: CXX_COMPILER__aizo2_unscanned_Debug G$:/cpp/aizo2/model/Graph.cpp || cmake_object_order_depends_target_aizo2
   DEP_FILE = CMakeFiles\aizo2.dir\model\Graph.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -static-libstdc++ -static-libgcc -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\aizo2.dir
   OBJECT_FILE_DIR = CMakeFiles\aizo2.dir\model
 
@@ -106,7 +106,8 @@ build CMakeFiles/aizo2.dir/model/Graph.cpp.obj: CXX_COMPILER__aizo2_unscanned_De
 # Link the executable aizo2.exe
 
 build aizo2.exe: CXX_EXECUTABLE_LINKER__aizo2_Debug CMakeFiles/aizo2.dir/main.cpp.obj CMakeFiles/aizo2.dir/service/Algorithms.cpp.obj CMakeFiles/aizo2.dir/utils/ConsoleManager.cpp.obj CMakeFiles/aizo2.dir/service/AutoPerformanceTester.cpp.obj CMakeFiles/aizo2.dir/service/Controller.cpp.obj CMakeFiles/aizo2.dir/utils/DataGenerator.cpp.obj CMakeFiles/aizo2.dir/utils/FileManager.cpp.obj CMakeFiles/aizo2.dir/model/Graph.cpp.obj
-  FLAGS = -g
+  FLAGS = -static-libstdc++ -static-libgcc -g
+  LINK_FLAGS = -static
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\aizo2.dir
   POST_BUILD = cd .
