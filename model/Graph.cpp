@@ -45,7 +45,7 @@ Graph::~Graph() {
 
 // Dodawanie krawędzi skierowanej
 void Graph::addDirEdge(int u, int v, int weight) {
-    std::cout << "Adding directed edge: " << u << " -> " << v << " with weight " << weight << std::endl;
+
     adjMatrix[u][v] = weight;
 
     Node *newNode = new Node;
@@ -57,7 +57,7 @@ void Graph::addDirEdge(int u, int v, int weight) {
 
 // Dodawanie krawędzi nieskierowanej
 void Graph::addUnDirEdge(int u, int v, int weight) {
-    std::cout << "Adding undirected edge: " << u << " <-> " << v << " with weight " << weight << std::endl;
+
     adjMatrix[u][v] = weight;
     adjMatrix[v][u] = weight;
 
