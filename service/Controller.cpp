@@ -201,14 +201,14 @@ void Controller::generateOwnDataAndSort() {
                 if (pathChoice == 1) {
                     if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1]);
+                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1],true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1]);
+                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1],true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -217,14 +217,14 @@ void Controller::generateOwnDataAndSort() {
                 } else if (pathChoice == 2) {
                     if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1]);
+                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1],true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1]);
+                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1],true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -239,14 +239,14 @@ void Controller::generateOwnDataAndSort() {
                 int reprezentationType = console.getTypeOptions();
                 if (reprezentationType == 2) {
                     start = chrono::high_resolution_clock::now();
-                    algorithms.fordFulkersonMatrix(*dirGraph, vertices[0], vertices[1]);
+                    algorithms.fordFulkersonMatrix(*dirGraph, vertices[0], vertices[1], true);
                     end = chrono::high_resolution_clock::now();
                     chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                     break;
                 } else if (reprezentationType == 1) {
                     start = chrono::high_resolution_clock::now();
-                    algorithms.fordFulkersonList(*dirGraph, vertices[0], vertices[1]);
+                    algorithms.fordFulkersonList(*dirGraph, vertices[0], vertices[1], true);
                     end = chrono::high_resolution_clock::now();
                     chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;

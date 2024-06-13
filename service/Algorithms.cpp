@@ -492,3 +492,276 @@ bool Algorithms::bfs(int **rGraph, int s, int t, int parent[], int vertices) {
     delete[] visited;
     return false;
 }
+
+
+
+
+// Funkcja pomocnicza do drukowania ścieżki
+void Algorithms::printPath(int parent[], int j) {
+    if (parent[j] == -1)
+        return;
+    printPath(parent, parent[j]);
+    std::cout << j << " ";
+}
+
+// Funkcja pomocnicza do drukowania rozwiązania
+void Algorithms::printSolution(int dist[], int n, int src, int dest, int parent[], bool print) {
+    if (print) {
+        std::cout << "Wierzcholek poczatkowy: " << src << " -> Wierzcholek koncowy: " << dest << "\n";
+        std::cout << "Całkowity koszt ściezki: " << dist[dest] << "\n";
+        std::cout << "sciezka: ";
+        std::cout << src << " ";
+        printPath(parent, dest);
+        std::cout << "\n";
+    }
+}
+
+// Algorytm Dijkstry dla macierzy sąsiedztwa
+void Algorithms::dijkstraMatrix(Graph graph, int src, int dest, bool print) {
+    int vertices = graph.getVertices();
+    int **adjMatrix = graph.getAdjMatrix();
+    int *dist = new int[vertices];
+    bool *sptSet = new bool[vertices];
+    int *parent = new int[vertices];
+
+    for (int i = 0; i < vertices; i++) {
+        dist[i] = INT_MAX;
+        sptSet[i] = false;
+        parent[i] = -1;
+    }
+
+    dist[src] = 0;
+
+    for (int count = 0; count < vertices - 1; count++) {
+        int u = minKey(dist, sptSet, vertices);
+        sptSet[u] = true;
+
+        if (u == dest) break;
+
+        for (int v = 0; v < vertices; v++) {
+            if (!sptSet[v] && adjMatrix[u][v] && dist[u] != INT_MAX && dist[u] + adjMatrix[u][v] < dist[v]) {
+                dist[v] = dist[u] + adjMatrix[u][v];
+                parent[v] = u;
+            }
+        }
+    }
+
+    printSolution(dist, vertices, src, dest, parent, print);
+
+    delete[] dist;
+    delete[] sptSet;
+    delete[] parent;
+}
+
+// Algorytm Dijkstry dla listy sąsiedztwa
+void Algorithms::dijkstraList(Graph graph, int src, int dest, bool print) {
+    int vertices = graph.getVertices();
+    Graph::Node **adjList = graph.getAdjList();
+    int *dist = new int[vertices];
+    bool *sptSet = new bool[vertices];
+    int *parent = new int[vertices];
+
+    for (int i = 0; i < vertices; i++) {
+        dist[i] = INT_MAX;
+        sptSet[i] = false;
+        parent[i] = -1;
+    }
+
+    dist[src] = 0;
+
+    for (int count = 0; count < vertices - 1; count++) {
+        int u = minKey(dist, sptSet, vertices);
+        sptSet[u] = true;
+
+        if (u == dest) break;
+
+        for (Graph::Node *node = adjList[u]; node != nullptr; node = node->next) {
+            int v = node->vertex;
+            if (!sptSet[v] && dist[u] != INT_MAX && dist[u] + node->weight < dist[v]) {
+                dist[v] = dist[u] + node->weight;
+                parent[v] = u;
+            }
+        }
+    }
+
+    printSolution(dist, vertices, src, dest, parent, print);
+
+    delete[] dist;
+    delete[] sptSet;
+    delete[] parent;
+}
+
+// Algorytm Bellmana-Forda dla macierzy sąsiedztwa
+void Algorithms::bellmanFordMatrix(Graph graph, int src, int dest, bool print) {
+    int vertices = graph.getVertices();
+    int **adjMatrix = graph.getAdjMatrix();
+    int *dist = new int[vertices];
+    int *parent = new int[vertices];
+
+    for (int i = 0; i < vertices; i++) {
+        dist[i] = INT_MAX;
+        parent[i] = -1;
+    }
+    dist[src] = 0;
+
+    for (int i = 1; i <= vertices - 1; i++) {
+        for (int u = 0; u < vertices; u++) {
+            for (int v = 0; v < vertices; v++) {
+                if (adjMatrix[u][v] && dist[u] != INT_MAX && dist[u] + adjMatrix[u][v] < dist[v]) {
+                    dist[v] = dist[u] + adjMatrix[u][v];
+                    parent[v] = u;
+                }
+            }
+        }
+        if (dist[dest] != INT_MAX) break;
+    }
+
+    for (int u = 0; u < vertices; u++) {
+        for (int v = 0; v < vertices; v++) {
+            if (adjMatrix[u][v] && dist[u] != INT_MAX && dist[u] + adjMatrix[u][v] < dist[v]) {
+                std::cout << "Graf zawiera ujemny cykl wagowy\n";
+                delete[] dist;
+                delete[] parent;
+                return;
+            }
+        }
+    }
+
+    printSolution(dist, vertices, src, dest, parent, print);
+
+    delete[] dist;
+    delete[] parent;
+}
+
+// Algorytm Bellmana-Forda dla listy sąsiedztwa
+void Algorithms::bellmanFordList(Graph graph, int src, int dest, bool print) {
+    int vertices = graph.getVertices();
+    Graph::Node **adjList = graph.getAdjList();
+    int *dist = new int[vertices];
+    int *parent = new int[vertices];
+
+    for (int i = 0; i < vertices; i++) {
+        dist[i] = INT_MAX;
+        parent[i] = -1;
+    }
+    dist[src] = 0;
+
+    for (int i = 1; i <= vertices - 1; i++) {
+        for (int u = 0; u < vertices; u++) {
+            for (Graph::Node *node = adjList[u]; node != nullptr; node = node->next) {
+                int v = node->vertex;
+                int weight = node->weight;
+                if (dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                    parent[v] = u;
+                }
+            }
+        }
+        if (dist[dest] != INT_MAX) break;
+    }
+
+    for (int u = 0; u < vertices; u++) {
+        for (Graph::Node *node = adjList[u]; node != nullptr; node = node->next) {
+            int v = node->vertex;
+            int weight = node->weight;
+            if (dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
+                std::cout << "Graf zawiera ujemny cykl wagowy\n";
+                delete[] dist;
+                delete[] parent;
+                return;
+            }
+        }
+    }
+
+    printSolution(dist, vertices, src, dest, parent, print);
+
+    delete[] dist;
+    delete[] parent;
+}
+
+// Algorytm Forda-Fulkersona dla macierzy sąsiedztwa
+void Algorithms::fordFulkersonMatrix(Graph graph, int source, int sink, bool print) {
+    int vertices = graph.getVertices();
+    int **adjMatrix = graph.getAdjMatrix();
+    int **rGraph = new int *[vertices];
+    for (int i = 0; i < vertices; i++) {
+        rGraph[i] = new int[vertices];
+        for (int j = 0; j < vertices; j++)
+            rGraph[i][j] = adjMatrix[i][j];
+    }
+
+    int *parent = new int[vertices];
+    int maxFlow = 0;
+
+    while (bfs(rGraph, source, sink, parent, vertices)) {
+        int pathFlow = INT_MAX;
+        for (int v = sink; v != source; v = parent[v]) {
+            int u = parent[v];
+            pathFlow = std::min(pathFlow, rGraph[u][v]);
+        }
+
+        for (int v = sink; v != source; v = parent[v]) {
+            int u = parent[v];
+            rGraph[u][v] -= pathFlow;
+            rGraph[v][u] += pathFlow;
+        }
+
+        maxFlow += pathFlow;
+    }
+
+    if (print) {
+        std::cout << "The maximum possible flow is " << maxFlow << "\n";
+    }
+
+    for (int i = 0; i < vertices; i++)
+        delete[] rGraph[i];
+    delete[] rGraph;
+    delete[] parent;
+}
+
+// Algorytm Forda-Fulkersona dla listy sąsiedztwa
+void Algorithms::fordFulkersonList(Graph graph, int source, int sink, bool print) {
+    int vertices = graph.getVertices();
+    int **rGraph = new int *[vertices];
+    for (int i = 0; i < vertices; i++) {
+        rGraph[i] = new int[vertices];
+        for (int j = 0; j < vertices; j++)
+            rGraph[i][j] = 0;
+    }
+
+    Graph::Node **adjList = graph.getAdjList();
+    for (int u = 0; u < vertices; u++) {
+        for (Graph::Node *node = adjList[u]; node != nullptr; node = node->next) {
+            int v = node->vertex;
+            rGraph[u][v] = node->weight;
+        }
+    }
+
+    int *parent = new int[vertices];
+    int maxFlow = 0;
+
+    while (bfs(rGraph, source, sink, parent, vertices)) {
+        int pathFlow = INT_MAX;
+        for (int v = sink; v != source; v = parent[v]) {
+            int u = parent[v];
+            pathFlow = std::min(pathFlow, rGraph[u][v]);
+        }
+
+        for (int v = sink; v != source; v = parent[v]) {
+            int u = parent[v];
+            rGraph[u][v] -= pathFlow;
+            rGraph[v][u] += pathFlow;
+        }
+
+        maxFlow += pathFlow;
+    }
+
+    if (print) {
+        std::cout << "The maximum possible flow is " << maxFlow << "\n";
+    }
+
+    for (int i = 0; i < vertices; i++)
+        delete[] rGraph[i];
+    delete[] rGraph;
+    delete[] parent;
+}

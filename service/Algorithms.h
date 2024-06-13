@@ -22,12 +22,29 @@ public:
     void fordFulkersonMatrix(Graph graph, int source, int sink);
     void fordFulkersonList(Graph graph, int source, int sink);
 
+    void fordFulkersonList(Graph graph, int source, int sink, bool print);
+
+    void fordFulkersonMatrix(Graph graph, int source, int sink, bool print);
+
+    void bellmanFordMatrix(Graph graph, int src, int dest, bool print);
+
+    void bellmanFordList(Graph graph, int src, int dest, bool print);
+
+    void dijkstraList(Graph graph, int src, int dest, bool print);
+
+    void dijkstraMatrix(Graph graph, int src, int dest, bool print);
+
 private:
     int minKey(int key[], bool mstSet[], int vertices);
     void printMST(int parent[], int n, int **graph);
     bool bfs(int **rGraph, int s, int t, int parent[], int vertices);
     int find(int parent[], int i);
     void Union(int parent[], int rank[], int x, int y);
+
+    void printPath(int *parent, int j);
+
+    void printSolution(int *dist, int n, int src, int dest, int *parent, bool print);
+
 };
 
 #endif //AIZO2_ALGORITHMS_H
