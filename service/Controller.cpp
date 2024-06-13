@@ -195,7 +195,7 @@ void Controller::generateOwnDataAndSort() {
             }
             case 2: //sciezka
 
-                {  int pathChoice = console.printShortPathAlgorithmsOptions();
+            {  int pathChoice = console.printShortPathAlgorithmsOptions();
                 int reprezentationType = console.getTypeOptions();
                 int *vertices = console.getVerticesToPath();
                 if (pathChoice == 1) {
@@ -260,13 +260,13 @@ void Controller::generateOwnDataAndSort() {
 void Controller::getDataFromFileAndSort() {
     bool printArray = console.askIfPrintArray();
 
-    int choice ;
+    int choice;
 
     Graph *dirGraph = fileManag.loadGraphFromFile(console.printGetFilename());
     Graph *unDirGraph = dataGenerator.generateUnDirGraph(dirGraph);
     chrono::high_resolution_clock::time_point start, end;
 
-    if(printArray) {
+    if (printArray) {
         cout << "Macierz incydencji dla grafu skierowanego " << endl;
         dirGraph->printAdjMatrix(printArray);
         cout << "Lista sąsiedztwa dla grafu skierowanego " << endl;
@@ -323,20 +323,21 @@ void Controller::getDataFromFileAndSort() {
             }
             case 2: //sciezka
 
-            {  int pathChoice = console.printShortPathAlgorithmsOptions();
+            {
+                int pathChoice = console.printShortPathAlgorithmsOptions();
                 int reprezentationType = console.getTypeOptions();
                 int *vertices = console.getVerticesToPath();
                 if (pathChoice == 1) {
                     if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -345,14 +346,14 @@ void Controller::getDataFromFileAndSort() {
                 } else if (pathChoice == 2) {
                     if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -383,6 +384,5 @@ void Controller::getDataFromFileAndSort() {
             }
         }
     } while (console.askIfWantToCheckOtherAlgorithm());
+
 }
-
-
