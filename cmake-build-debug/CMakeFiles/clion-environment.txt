@@ -2,4 +2,4 @@ ToolSet: 11.0 w64 (local)@C:\Users\matty\AppData\Local\JetBrains\Toolbox\apps\CL
 Ninja: 1.11.1@C:\Users\matty\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\241.14494.288\bin\ninja\win\x64\ninja.exe
 Options: 
 
-Options:-DCMAKE_MAKE_PROGRAM=C:/Users/matty/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/241.14494.288/bin/ninja/win/x64/ninja.exe
+Options:

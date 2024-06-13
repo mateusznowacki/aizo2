@@ -17,10 +17,16 @@ void ConsoleManager::printMenu() {
 
 
 int ConsoleManager::printSortingAlgorithmsOptions() {
-    cout << "" << endl;
-    cout << "1. Uruchom algorytm MST" << endl;
-    cout << "2. Uruchom algorytm najkrotszej sciezki" << endl;
-    cout << "3. Uruchom algorytm maksymalnego przeplywu" << endl;
+    cout<<"====================="<<endl;
+    cout<<"MENU GLOWNE"<<endl;
+    cout<<"====================="<<endl;
+    cout<<"1. Wczytaj dane z pliku"<<endl;
+    cout<<"2. Wygeneruj graf losowo"<<endl;
+    cout<<"3. Wyswietl graf"<<endl;
+    cout<<"4. Uruchom algorytm MST"<<endl;
+    cout<<"5. Uruchom algorytm najkrotszej sciezki"<<endl;
+    cout<<"6. Uruchom algorytm maksymalnego przeplywu"<<endl;
+    cout<<"7. Wyjscie"<<endl;
     cout << "=====================" << endl;
     cout << "Wybierz opcje: ";
     int choice = 0;
@@ -29,8 +35,9 @@ int ConsoleManager::printSortingAlgorithmsOptions() {
 }
 
 int ConsoleManager::printMST() {
-    cout << "1. Prim" << endl;
-    cout << "2. Kruskal" << endl;
+    cout << "Wybierz algorytm MST" << endl;
+    cout << "1. Kruskal" << endl;
+    cout << "2. Prim" << endl;
     cout << "=====================" << endl;
     cout << "Wybierz opcje: ";
     int choice = 0;
@@ -40,7 +47,7 @@ int ConsoleManager::printMST() {
 
 int ConsoleManager::printShortPath() {
     cout << "1. Dijkstra" << endl;
-    cout << "2. Ford-Bellman" << endl;
+    cout << "2. Bellman-Ford" << endl;
     cout << "=====================" << endl;
     cout << "Wybierz opcje: ";
     int choice = 0;
@@ -121,7 +128,7 @@ string ConsoleManager::printGetFilename() {
     cout << "Podaj nazwe pliku: " << endl;
     string name;
     cin >> name;
-    name.append(".txt");
+
     return name;
 }
 
@@ -156,8 +163,9 @@ bool ConsoleManager::askIfWantToCheckOtherAlgorithm() {
 
 int ConsoleManager::getTypeOptions() {
     cout << "Wybierz typ reprezentacji " << endl;
-    cout << "1. Lista " << endl;
-    cout << "2. Macierz " << endl;
+    cout << "1. Macierz " << endl;
+    cout << "2. Lista " << endl;
+    cout << "Wybierz opcje:" << endl;
     int choice = 0;
     cin >> choice;
     return choice;
@@ -165,9 +173,9 @@ int ConsoleManager::getTypeOptions() {
 
 int *ConsoleManager::getVerticesToPath() {
     int vertices[2];
-    cout << "Podaj wierzchołek począktowy:" << endl;
+    cout << "Podaj wierzcholek startowy:" << endl;
     cin >> vertices[0];
-    cout << "Podaj wierzchołek koncowy" << endl;
+    cout << "Podaj wierzcholek koncowy:" << endl;
     cin >> vertices[1];
     return vertices;
 }

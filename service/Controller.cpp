@@ -11,7 +11,6 @@ FileManager fileManag; // Utworzenie obiektu fileManager klasy FileManager
 Algorithms algorithms; // Utworzenie obiektu algorithms klasy Algorithms
 
 
-
 void Controller::generateGraphsToFile() {
     int vertices = console.printGetVertexCount();
     int density = console.printGetDensity();
@@ -22,16 +21,78 @@ void Controller::generateGraphsToFile() {
 }
 
 void Controller::runUserTest() {
-    int choice = 0;
-    console.printAvailableDataSources(); // Wyświetlenie dostępnych źródeł danych
-    cin >> choice;
-    if (choice == 1) {
-        generateOwnDataAndSort(); // Generowanie własnych danych i sortowanie
-    } else if (choice == 2) {
-        getDataFromFileAndSort(); // Pobieranie danych z pliku i sortowanie
-    }
-}
+    int choice;
+    Graph *dirGraph;
+    Graph *unDirGraph;
+    do {
+        choice = console.printSortingAlgorithmsOptions();
+        switch (choice) {
+            case 1: {
+                dirGraph = fileManag.loadGraphFromFile(console.printGetFilename());
+                break;
+            }
+            case 2: {
+                dirGraph = dataGenerator.generateRandomDirGraph(console.printGetVertexCount(),
+                                                                console.printGetDensity());
+                break;
+            }
+            case 3: {
+                unDirGraph = dataGenerator.generateUnDirGraph(dirGraph);
+                unDirGraph->printAdjMatrix(true);
+                unDirGraph->printAdjList(true);
+                break;
+            }
+            case 4: {
+                int mstType = console.printMST();
+                int reprezentationType = console.getTypeOptions();
+                if (mstType == 2) {
+                    if (reprezentationType == 2) {
+                        algorithms.primMSTList(*unDirGraph);
+                    } else if (reprezentationType == 1) {
+                        algorithms.primMSTMatrix(*unDirGraph);
+                    }
+                } else if (mstType == 1) {
+                    if (reprezentationType == 2) {
+                        algorithms.kruskalMSTList(*unDirGraph);
+                    } else if (reprezentationType == 1) {
+                        algorithms.kruskalMSTMatrix(*unDirGraph);
+                    }
+                }
+                break;
+            }
+            case 5: {
+                int *vertices = console.getVerticesToPath();
+                int pathType = console.printShortPath();
+                int reprezentationType = console.getTypeOptions();
 
+                if (pathType == 1) {
+                    if (reprezentationType == 2) {
+                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1]);
+                    } else if (reprezentationType == 1) {
+                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1]);
+                    }
+                } else if (pathType == 2) {
+                    if (reprezentationType == 1) {
+                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1]);
+                    } else if (reprezentationType == 2) {
+                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1]);
+                    }
+                }
+                break;
+            }
+            case 6: {
+                int *vertices = console.getVerticesToPath();
+                int reprezentationType = console.getTypeOptions();
+                if (reprezentationType == 1) {
+                    algorithms.fordFulkersonMatrix(*dirGraph, vertices[0], vertices[1]);
+                } else if (reprezentationType == 2) {
+                    algorithms.fordFulkersonList(*dirGraph, vertices[0], vertices[1]);
+                }
+                break;
+            }
+        }
+    } while (choice != 7);
+}
 
 std::chrono::microseconds
 Controller::runGraphAlgorithm(int algorithmType, int vertexCount, int density, int reprezentationType) {
@@ -128,137 +189,5 @@ Controller::runGraphAlgorithm(int algorithmType, int vertexCount, int density, i
     return chrono::microseconds(0);
 }
 
-void Controller::generateOwnDataAndSort() {
-
-    bool printArray = console.askIfPrintArray();
-
-    int choice ;
-
-    Graph *dirGraph = dataGenerator.generateRandomDirGraph(console.printGetVertexCount(), console.printGetDensity());
-    Graph *unDirGraph = dataGenerator.generateUnDirGraph(dirGraph);
-    chrono::high_resolution_clock::time_point start, end;
-
-    if(printArray) {
-        cout << "Macierz incydencji dla grafu skierowanego " << endl;
-        dirGraph->printAdjMatrix(printArray);
-        cout << "Lista sąsiedztwa dla grafu skierowanego " << endl;
-        dirGraph->printAdjList(printArray);
-        cout << "Macierz incydencji dla grafu nieskierowanego " << endl;
-        unDirGraph->printAdjMatrix(printArray);
-        cout << "Lista sąsiedztwa dla grafu nieskierowanego " << endl;
-        unDirGraph->printAdjList(printArray);
-    }
-
-    do {
-        choice = console.printSortingAlgorithmsOptions();
-        switch (choice) {
-
-            case 1: //mst
-            {
-                int mstChoice = console.printMSTAlgorithmsOptions();
-                int reprezentationType = console.getTypeOptions();
-                if (mstChoice == 1) {
-                    if (reprezentationType == 2) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.primMSTMatrix(*unDirGraph);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    } else if (reprezentationType == 1) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.primMSTList(*unDirGraph);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    }
-
-                } else if (mstChoice == 2) {
-                    if (reprezentationType == 2) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.kruskalMSTList(*unDirGraph);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    } else if (reprezentationType == 1) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.kruskalMSTMatrix(*unDirGraph);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    }
-
-                }
-            }
-            case 2: //sciezka
-
-                {  int pathChoice = console.printShortPathAlgorithmsOptions();
-                int reprezentationType = console.getTypeOptions();
-                int *vertices = console.getVerticesToPath();
-                if (pathChoice == 1) {
-                    if (reprezentationType == 1) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1]);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    } else if (reprezentationType == 2) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1]);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    }
-                } else if (pathChoice == 2) {
-                    if (reprezentationType == 2) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1]);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    } else if (reprezentationType == 1) {
-                        start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1]);
-                        end = chrono::high_resolution_clock::now();
-                        chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                        cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                        break;
-                    }
-                }
-
-            }
-            case 3: //maxflow
-            {
-                int *vertices = console.getVerticesToPath();
-                int reprezentationType = console.getTypeOptions();
-                if (reprezentationType == 2) {
-                    start = chrono::high_resolution_clock::now();
-                    algorithms.fordFulkersonMatrix(*dirGraph, vertices[0], vertices[1]);
-                    end = chrono::high_resolution_clock::now();
-                    chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                    break;
-                } else if (reprezentationType == 1) {
-                    start = chrono::high_resolution_clock::now();
-                    algorithms.fordFulkersonList(*dirGraph, vertices[0], vertices[1]);
-                    end = chrono::high_resolution_clock::now();
-                    chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
-                    break;
-                }
-            }
-        }
-    } while (console.askIfWantToCheckOtherAlgorithm());
-}
-
-void Controller::getDataFromFileAndSort() {
-
-}
 
 

@@ -86,9 +86,9 @@ int Algorithms::minKey(int key[], bool mstSet[], int vertices) {
 
 // Function to print the constructed MST stored in parent[]
 void Algorithms::printMST(int parent[], int n, int **graph) {
-    //std::cout << "Edge \tWeight\n";
-  //  for (int i = 1; i < n; i++)
-        //std::cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
+    std::cout << "Edge \tWeight\n";
+    for (int i = 1; i < n; i++)
+        std::cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
 }
 
 // Kruskal's algorithm using adjacency matrix
@@ -144,7 +144,7 @@ void Algorithms::kruskalMSTMatrix(Graph graph) {
 
     //std::cout << "Edges in MST\n";
     for (int i = 0; i < e; i++) {
-        //std::cout << result[i].src << " - " << result[i].dest << " \t" << result[i].weight << " \n";
+        std::cout << result[i].src << " - " << result[i].dest << " \t" << result[i].weight << " \n";
     }
 
     delete[] edges;
@@ -206,7 +206,7 @@ void Algorithms::kruskalMSTList(Graph graph) {
 
     //std::cout << "Edges in MST\n";
     for (int i = 0; i < e; i++) {
-        //std::cout << result[i].src << " - " << result[i].dest << " \t" << result[i].weight << " \n";
+        std::cout << result[i].src << " - " << result[i].dest << " \t" << result[i].weight << " \n";
     }
 
     delete[] edges;
