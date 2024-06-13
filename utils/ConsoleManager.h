@@ -12,7 +12,7 @@ class ConsoleManager {
     public:
 
     void printMenu();
-    void print1Menu();
+    int printSortingAlgorithmsOptions();
     int getTypeOptions();
     int printMSTAlgorithmsOptions();
     int printShortPathAlgorithmsOptions();
@@ -22,7 +22,7 @@ class ConsoleManager {
 //    void printAvailableDataSources();
 //    string printGetFilename();
 //    bool askIfPrintArray();
-//    bool askIfWantToCheckOtherAlgorithm();
+   bool askIfWantToCheckOtherAlgorithm();
 //    void printConfig();
     int printGetVertexCount();
 
@@ -34,6 +34,16 @@ class ConsoleManager {
      void printAdjList(Graph::Node** adjList, int vertices);
 
     string printGetFilename();
+
+    void printAvailableDataSources();
+
+    bool askIfPrintArray();
+
+    int printMST();
+
+    int printShortPath();
+
+    int *getVerticesToPath();
 };
 
 

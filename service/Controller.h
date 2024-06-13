@@ -13,6 +13,11 @@ class Controller {
     std::chrono::microseconds runGraphAlgorithm(int algorithmType, int vertexCount, int density, int reprezentationType);
    void generateGraphsToFile();
 
+    void runUserTest();
+
+    void generateOwnDataAndSort();
+
+    void getDataFromFileAndSort();
 };
 
 

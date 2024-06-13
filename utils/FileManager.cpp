@@ -113,7 +113,7 @@ void FileManager::saveResultToFile(std::chrono::duration<int64_t, ratio<1, 10000
             return;
         }
     }
-    chrono::milliseconds duration_ms = chrono::duration_cast<chrono::milliseconds>(time);
+    chrono::microseconds duration_ms = chrono::duration_cast<chrono::microseconds>(time);
 
     // Zapisanie wyniku czasu do pliku
     file << duration_ms.count() << endl;

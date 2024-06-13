@@ -25,7 +25,7 @@ int main() {
                 break;
             }
             case 2: {
-             //   controller.getUserDataForAlgorithms(); // sprawdzanie poprawności algorytmów
+                controller.runUserTest(); // sprawdzanie poprawności algorytmów
                 break;
             }
             case 3: {

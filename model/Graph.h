@@ -22,6 +22,10 @@ public:
     int getDensity();
     int *getTwoDifferentVertices();
 
+    void printAdjMatrix(bool print);
+
+    void printAdjList(bool print);
+
 private:
     int density;
     int vertices; // Liczba wierzchołków

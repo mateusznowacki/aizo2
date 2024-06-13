@@ -235,7 +235,6 @@ void Algorithms::Union(int parent[], int rank[], int x, int y) {
         rank[xroot]++;
     }
 }
-
 void Algorithms::dijkstraMatrix(Graph graph, int src, int dest) {
     int vertices = graph.getVertices();
     int **adjMatrix = graph.getAdjMatrix();
@@ -261,14 +260,13 @@ void Algorithms::dijkstraMatrix(Graph graph, int src, int dest) {
         }
     }
 
-    //std::cout << "Vertex \t Distance from Source\n";
-    for (int i = 0; i < vertices; i++)
-        //std::cout << i << " \t " << dist[i] << " \n";
+ //   std::cout << "Vertex \t Distance from Source\n";
+   // for (int i = 0; i < vertices; i++)
+     //   std::cout << i << " \t " << dist[i] << " \n";
 
     delete[] dist;
     delete[] sptSet;
 }
-
 void Algorithms::dijkstraList(Graph graph, int src, int dest) {
     int vertices = graph.getVertices();
     Graph::Node **adjList = graph.getAdjList();
@@ -295,9 +293,9 @@ void Algorithms::dijkstraList(Graph graph, int src, int dest) {
         }
     }
 
-    //std::cout << "Vertex \t Distance from Source\n";
-    for (int i = 0; i < vertices; i++)
-        //std::cout << i << " \t " << dist[i] << " \n";
+ //   std::cout << "Vertex \t Distance from Source\n";
+  //  for (int i = 0; i < vertices; i++)
+      //  std::cout << i << " \t " << dist[i] << " \n";
 
     delete[] dist;
     delete[] sptSet;

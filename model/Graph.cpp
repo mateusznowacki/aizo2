@@ -1,6 +1,6 @@
 #include "Graph.h"
 #include <iostream>
-
+#include <iomanip>
 // Konstruktor z listą inicjalizacyjną
 Graph::Graph(int vertices) : vertices(vertices) {
 
@@ -94,7 +94,7 @@ int Graph::getDensity() {
     return density;
 }
 
-int* Graph::getTwoDifferentVertices() {
+int *Graph::getTwoDifferentVertices() {
     if (vertices < 2) return nullptr;
 
     srand(time(nullptr)); // Inicjalizacja generatora liczb losowych
@@ -106,6 +106,36 @@ int* Graph::getTwoDifferentVertices() {
     } while (vertices[1] == vertices[0]);
 
     return vertices;
+
+}
+
+// Funkcja drukująca listę sąsiedztwa
+void Graph::printAdjList(bool print) {
+    if (print == true) {
+        for (int i = 0; i < vertices; ++i) {
+            Node *head = adjList[i];
+            std::cout << "Wierzcholek " << i << ": ";
+            while (head != nullptr) {
+                std::cout << "-> (" << head->vertex << ", " << head->weight << ") ";
+                head = head->next;
+            }
+            std::cout << std::endl;
+        }
+    }
+}
+
+// Funkcja drukująca macierz sąsiedztwa
+void Graph::printAdjMatrix(bool print) {
+    if (print == true) {
+        if (print) {
+            for (int i = 0; i < vertices; ++i) {
+                for (int j = 0; j < vertices; ++j) {
+                    std::cout << std::setw(4) << adjMatrix[i][j] << " "; // Ustawienie szerokości kolumny na 4
+                }
+                std::cout << std::endl;
+            }
+        }
+    }
 
 }
 

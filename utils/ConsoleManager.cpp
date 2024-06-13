@@ -16,17 +16,38 @@ void ConsoleManager::printMenu() {
 }
 
 
-void ConsoleManager::print1Menu() {
+int ConsoleManager::printSortingAlgorithmsOptions() {
     cout << "" << endl;
-    cout << "2. Wygeneruj graf losowo" << endl;
-    cout << "3. Wyswietl graf" << endl;
-    cout << "4. Uruchom algorytm MST" << endl;
-    cout << "5. Uruchom algorytm najkrotszej sciezki" << endl;
-    cout << "6. Uruchom algorytm maksymalnego przeplywu" << endl;
-    cout << "7. Wyjscie" << endl;
+    cout << "1. Uruchom algorytm MST" << endl;
+    cout << "2. Uruchom algorytm najkrotszej sciezki" << endl;
+    cout << "3. Uruchom algorytm maksymalnego przeplywu" << endl;
     cout << "=====================" << endl;
     cout << "Wybierz opcje: ";
+    int choice = 0;
+    cin >> choice;
+    return choice;
 }
+
+int ConsoleManager::printMST() {
+    cout << "1. Prim" << endl;
+    cout << "2. Kruskal" << endl;
+    cout << "=====================" << endl;
+    cout << "Wybierz opcje: ";
+    int choice = 0;
+    cin >> choice;
+    return choice;
+}
+
+int ConsoleManager::printShortPath() {
+    cout << "1. Dijkstra" << endl;
+    cout << "2. Ford-Bellman" << endl;
+    cout << "=====================" << endl;
+    cout << "Wybierz opcje: ";
+    int choice = 0;
+    cin >> choice;
+    return choice;
+}
+
 
 int ConsoleManager::printMSTAlgorithmsOptions() {
     cout << "1. Kruskal" << endl;
@@ -53,21 +74,21 @@ int ConsoleManager::printMaxFlowAlgorithmsOptions() {
 }
 
 int ConsoleManager::printGetVertexCount() {
-    cout << "Podaj liczbe wierzcholkow: "<<endl;
+    cout << "Podaj liczbe wierzcholkow: " << endl;
     int choice = 0;
     cin >> choice;
     return choice;
 }
 
 int ConsoleManager::printGetDensity() {
-    cout << "Podaj gestosc grafu w procentach: "<<endl;
+    cout << "Podaj gestosc grafu w procentach: " << endl;
     int choice = 0;
     cin >> choice;
     return choice;
 }
 
 int ConsoleManager::printGetEdgeMaxWeight() {
-    cout << "Podaj maksymalna wage krawedzi: "<<endl;
+    cout << "Podaj maksymalna wage krawedzi: " << endl;
     int choice = 0;
     cin >> choice;
     return choice;
@@ -97,10 +118,57 @@ void ConsoleManager::printAdjList(Graph::Node **adjList, int vertices) {
 }
 
 string ConsoleManager::printGetFilename() {
-    cout << "Podaj nazwe pliku: "<<endl;
+    cout << "Podaj nazwe pliku: " << endl;
     string name;
     cin >> name;
     name.append(".txt");
     return name;
+}
+
+void ConsoleManager::printAvailableDataSources() {
+    cout << "Wybierz zrodlo danych" << endl;
+    cout << "1. Wygeneruj losowe dane" << endl;
+    cout << "2. Wczytaj dane z pliku" << endl;
+}
+
+bool ConsoleManager::askIfPrintArray() {
+    cout << "Czy chcesz wyswietlic grafy ?  1-tak 0-nie" << endl;
+    int choice;
+    cin >> choice;
+    if (choice == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool ConsoleManager::askIfWantToCheckOtherAlgorithm() {
+    // Metoda do zapytania użytkownika, czy chce sprawdzić inny algorytm sortowania
+    cout << "Czy chcesz sprawdzic inny algorytm sortowania? 1-tak 0-nie" << endl;
+    int choice;
+    cin >> choice;
+    if (choice == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+int ConsoleManager::getTypeOptions() {
+    cout << "Wybierz typ reprezentacji " << endl;
+    cout << "1. Lista " << endl;
+    cout << "2. Macierz " << endl;
+    int choice = 0;
+    cin >> choice;
+    return choice;
+}
+
+int *ConsoleManager::getVerticesToPath() {
+    int vertices[2];
+    cout << "Podaj wierzchołek począktowy:" << endl;
+    cin >> vertices[0];
+    cout << "Podaj wierzchołek koncowy" << endl;
+    cin >> vertices[1];
+    return vertices;
 }
 
