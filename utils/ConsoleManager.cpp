@@ -16,11 +16,24 @@ void ConsoleManager::printMenu() {
 }
 
 
+//int ConsoleManager::printSortingAlgorithmsOptions() {
+//    cout << "" << endl;
+//    cout << "1. Uruchom algorytm MST" << endl;
+//    cout << "2. Uruchom algorytm najkrotszej sciezki" << endl;
+//    cout << "3. Uruchom algorytm maksymalnego przeplywu" << endl;
+//    cout << "=====================" << endl;
+//    cout << "Wybierz opcje: ";
+//    int choice = 0;
+//    cin >> choice;
+//    return choice;
+//}
+
 int ConsoleManager::printSortingAlgorithmsOptions() {
-    cout << "" << endl;
-    cout << "1. Uruchom algorytm MST" << endl;
-    cout << "2. Uruchom algorytm najkrotszej sciezki" << endl;
-    cout << "3. Uruchom algorytm maksymalnego przeplywu" << endl;
+    cout << "1. Prim" << endl;
+    cout << "2. Kruskal" << endl;
+    cout << "3. Dijkstra" << endl;
+    cout << "4. Ford-Bellman" << endl;
+    cout << "5. Ford-Fulkerson" << endl;
     cout << "=====================" << endl;
     cout << "Wybierz opcje: ";
     int choice = 0;

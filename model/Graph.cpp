@@ -118,6 +118,42 @@ void Graph::printAvailableVertices() {
 }
 
 
+    Graph* Graph::clone() const {
+        // Tworzymy nowy obiekt Graph z tą samą liczbą wierzchołków
+        Graph* newGraph = new Graph(this->vertices);
+
+        // Kopiujemy macierz sąsiedztwa
+        for (int i = 0; i < this->vertices; ++i) {
+            for (int j = 0; j < this->vertices; ++j) {
+                newGraph->adjMatrix[i][j] = this->adjMatrix[i][j];
+            }
+        }
+
+        // Kopiujemy listę sąsiedztwa
+        for (int i = 0; i < this->vertices; ++i) {
+            Node* current = this->adjList[i];
+            Node* newCurrent = nullptr;
+            Node** lastPointer = &(newGraph->adjList[i]);
+            while (current != nullptr) {
+                newCurrent = new Node;
+                newCurrent->vertex = current->vertex;
+                newCurrent->weight = current->weight;
+                newCurrent->next = nullptr;
+
+                *lastPointer = newCurrent;
+                lastPointer = &(newCurrent->next);
+
+                current = current->next;
+            }
+        }
+
+        // Kopiujemy inne istotne dane
+        newGraph->density = this->density;
+
+        return newGraph;
+    }
+
+
 
 // Funkcja drukująca listę sąsiedztwa
 void Graph::printAdjList(bool print) {

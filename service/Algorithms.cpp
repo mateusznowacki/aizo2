@@ -38,28 +38,35 @@ void Algorithms::primMSTMatrix(Graph graph) {
     delete[] mstSet;
 }
 
-// Prim's algorithm using adjacency list
 void Algorithms::primMSTList(Graph graph) {
     int vertices = graph.getVertices();
     Graph::Node **adjList = graph.getAdjList();
-    int *parent = new int[vertices];
-    int *key = new int[vertices];
-    bool *mstSet = new bool[vertices];
+    int *parent = new int[vertices];  // Tablica do przechowywania MST
+    int *key = new int[vertices];     // Wartości kluczy używane do wyboru minimalnej wagi krawędzi
+    bool *mstSet = new bool[vertices]; // Tablica do śledzenia wierzchołków uwzględnionych w MST
 
+    // Inicjalizacja wszystkich kluczy jako nieskończoność
     for (int i = 0; i < vertices; i++) {
         key[i] = INT_MAX;
         mstSet[i] = false;
     }
 
-    key[0] = 0;
-    parent[0] = -1;
+    // Zawsze uwzględniamy pierwszy wierzchołek w MST
+    key[0] = 0;     // Ustaw klucz pierwszego wierzchołka na 0, aby wybrać go jako pierwszy
+    parent[0] = -1; // Pierwszy wierzchołek jest korzeniem MST
 
+    // MST będzie miało 'vertices' wierzchołków
     for (int count = 0; count < vertices - 1; count++) {
+        // Wybierz minimalny kluczowy wierzchołek z zestawu wierzchołków, które jeszcze nie są uwzględnione w MST
         int u = minKey(key, mstSet, vertices);
+
+        // Dodaj wybrany wierzchołek do zestawu MST
         mstSet[u] = true;
 
-        for (Graph::Node *node = adjList[u]; node != nullptr; node = node->next) {
+        // Zaktualizuj wartość kluczy i wskaźnik rodzica wybranych sąsiadów wierzchołka
+        for (Graph::Node* node = adjList[u]; node != nullptr; node = node->next) {
             int v = node->vertex;
+            // Zaktualizuj klucz tylko wtedy, gdy 'v' nie jest jeszcze w MST i waga krawędzi (u, v) jest mniejsza niż aktualny klucz 'v'
             if (!mstSet[v] && node->weight < key[v]) {
                 parent[v] = u;
                 key[v] = node->weight;
@@ -67,11 +74,22 @@ void Algorithms::primMSTList(Graph graph) {
         }
     }
 
-    //   printMST(parent, vertices, graph.getAdjMatrix());
+    // Funkcja do drukowania zbudowanego MST
+ //   printMST(parent, vertices, graph.getAdjMatrix());
+
+    // Zwalnianie dynamicznie alokowanych tablic
     delete[] parent;
     delete[] key;
     delete[] mstSet;
 }
+
+void Algorithms::printMST(int parent[], int vertices, int **adjMatrix) {
+    std::cout << "Krawedz \tWaga\n";
+    for (int i = 1; i < vertices; i++) {
+        std::cout << parent[i] << " - " << i << "\t" << adjMatrix[i][parent[i]] << "\n";
+    }
+}
+
 
 // Helper function to find the vertex with minimum key value, from the set of vertices not yet included in MST
 int Algorithms::minKey(int key[], bool mstSet[], int vertices) {
@@ -84,12 +102,12 @@ int Algorithms::minKey(int key[], bool mstSet[], int vertices) {
     return min_index;
 }
 
-// Function to print the constructed MST stored in parent[]
-void Algorithms::printMST(int parent[], int n, int **graph) {
-    //std::cout << "Edge \tWeight\n";
-    //  for (int i = 1; i < n; i++)
-    //std::cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
-}
+//// Function to print the constructed MST stored in parent[]
+//void Algorithms::printMST(int parent[], int n, int **graph) {
+//    //std::cout << "Edge \tWeight\n";
+//    //  for (int i = 1; i < n; i++)
+//    //std::cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
+//}
 
 // Kruskal's algorithm using adjacency matrix
 void Algorithms::kruskalMSTMatrix(Graph graph) {

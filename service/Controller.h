@@ -7,6 +7,7 @@
 
 
 #include <chrono>
+#include "../model/Graph.h"
 
 class Controller {
     public:
@@ -18,6 +19,12 @@ class Controller {
     void generateOwnDataAndSort();
 
     void getDataFromFileAndSort();
+
+    void runManualTest(int choice);
+
+    void runListAlgorithm(int type, Graph *pGraph, Graph *pGraph1);
+
+    void runMatrixAlgorithm(int type, Graph *pGraph, Graph *pGraph1);
 };
 
 

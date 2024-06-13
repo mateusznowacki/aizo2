@@ -25,11 +25,13 @@ void Controller::runUserTest() {
     int choice = 0;
     console.printAvailableDataSources(); // Wyświetlenie dostępnych źródeł danych
     cin >> choice;
-    if (choice == 1) {
-        generateOwnDataAndSort(); // Generowanie własnych danych i sortowanie
-    } else if (choice == 2) {
-        getDataFromFileAndSort(); // Pobieranie danych z pliku i sortowanie
-    }
+//    if (choice == 1) {
+//        generateOwnDataAndSort(); // Generowanie własnych danych i sortowanie
+//    } else if (choice == 2) {
+//        getDataFromFileAndSort(); // Pobieranie danych z pliku i sortowanie
+//    }
+    runManualTest(choice);
+
 }
 
 
@@ -132,13 +134,13 @@ void Controller::generateOwnDataAndSort() {
 
     bool printArray = console.askIfPrintArray();
 
-    int choice ;
+    int choice;
 
     Graph *dirGraph = dataGenerator.generateRandomDirGraph(console.printGetVertexCount(), console.printGetDensity());
     Graph *unDirGraph = dataGenerator.generateUnDirGraph(dirGraph);
     chrono::high_resolution_clock::time_point start, end;
 
-    if(printArray) {
+    if (printArray) {
         cout << "Macierz incydencji dla grafu skierowanego " << endl;
         dirGraph->printAdjMatrix(printArray);
         cout << "Lista sąsiedztwa dla grafu skierowanego " << endl;
@@ -195,20 +197,21 @@ void Controller::generateOwnDataAndSort() {
             }
             case 2: //sciezka
 
-            {  int pathChoice = console.printShortPathAlgorithmsOptions();
+            {
+                int pathChoice = console.printShortPathAlgorithmsOptions();
                 int reprezentationType = console.getTypeOptions();
                 int *vertices = console.getVerticesToPath();
                 if (pathChoice == 1) {
                     if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -217,14 +220,14 @@ void Controller::generateOwnDataAndSort() {
                 } else if (pathChoice == 2) {
                     if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1],true);
+                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1], true);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -339,7 +342,7 @@ void Controller::getDataFromFileAndSort() {
                         break;
                     } else if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1] );
+                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1]);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -348,14 +351,14 @@ void Controller::getDataFromFileAndSort() {
                 } else if (pathChoice == 2) {
                     if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1] );
+                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1]);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1] );
+                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1]);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -387,4 +390,136 @@ void Controller::getDataFromFileAndSort() {
         }
     } while (console.askIfWantToCheckOtherAlgorithm());
 
+}
+
+void Controller::runManualTest(int choice) {
+
+    switch (choice) {
+        case 1: {
+            Graph *dirGraph = dataGenerator.generateRandomDirGraph(console.printGetVertexCount(),
+                                                                   console.printGetDensity());
+            Graph *unDirGraph = dataGenerator.generateUnDirGraph(dirGraph);
+
+            break;
+        }
+        case 2: {
+            string filename=console.printGetFilename();
+            bool printArray = console.askIfPrintArray();
+
+            do {
+                Graph *dirGraph = fileManag.loadGraphFromFile(filename);
+                Graph *unDirGraph = dataGenerator.generateUnDirGraph(dirGraph);
+
+                if (printArray) {
+                    cout << "Macierz incydencji dla grafu skierowanego " << endl;
+                    dirGraph->printAdjMatrix(printArray);
+                    cout << "Lista sąsiedztwa dla grafu skierowanego " << endl;
+                    dirGraph->printAdjList(printArray);
+                    cout << "Macierz incydencji dla grafu nieskierowanego " << endl;
+                    unDirGraph->printAdjMatrix(printArray);
+                    cout << "Lista sąsiedztwa dla grafu nieskierowanego " << endl;
+                    unDirGraph->printAdjList(printArray);
+                    printArray= false;
+                }
+
+                int algorithmType = console.printSortingAlgorithmsOptions();
+                int reprezentationType = console.getTypeOptions(); //lista/macierz
+
+                if (reprezentationType == 1) {
+                    runListAlgorithm(algorithmType, dirGraph, unDirGraph);
+
+                } else if (reprezentationType == 2) {
+                    runMatrixAlgorithm(algorithmType, dirGraph, unDirGraph);
+                }
+
+            } while (console.askIfWantToCheckOtherAlgorithm());
+            break;
+        }
+    }
+
+}
+
+void Controller::runMatrixAlgorithm(int type, Graph *dirGraph, Graph *unDirGraph) {
+
+    switch (type) {
+        case 1: {
+            Graph *unDirGraphCopy = unDirGraph->clone();
+            algorithms.primMSTMatrix(*unDirGraphCopy);
+            delete unDirGraphCopy;
+            break;
+        }
+        case 2: {
+            Graph *unDirGraphCopy = unDirGraph->clone();
+            algorithms.kruskalMSTMatrix(*unDirGraphCopy);
+            delete unDirGraphCopy;
+            break;
+        }
+        case 3: {
+            Graph *dirGraphCopy = dirGraph->clone();
+            int *vertices = console.getVerticesToPath();
+            algorithms.dijkstraMatrix(*dirGraphCopy, vertices[0], vertices[1]);
+            delete[] vertices;
+            delete dirGraphCopy;
+            break;
+        }
+        case 4: {
+            Graph *dirGraphCopy = dirGraph->clone();
+            int *vertices = console.getVerticesToPath();
+            algorithms.bellmanFordMatrix(*dirGraphCopy, vertices[0], vertices[1]);
+            delete[] vertices;
+            delete dirGraphCopy;
+            break;
+        }
+        case 5: {
+            Graph *dirGraphCopy = dirGraph->clone();
+            int *vertices = console.getVerticesToPath();
+            algorithms.fordFulkersonMatrix(*dirGraphCopy, vertices[0], vertices[1]);
+            delete[] vertices;
+            delete dirGraphCopy;
+            break;
+        }
+    }
+
+}
+
+void Controller::runListAlgorithm(int type, Graph *dirGraph, Graph *unDirGraph) {
+
+    switch (type) {
+        case 1: {
+            Graph *unDirGraphCopy = unDirGraph->clone();
+            algorithms.primMSTList(*unDirGraphCopy);
+            delete unDirGraphCopy;
+            break;
+        }
+        case 2: {
+            Graph *unDirGraphCopy = unDirGraph->clone();
+            algorithms.kruskalMSTList(*unDirGraphCopy);
+            delete unDirGraphCopy;
+            break;
+        }
+        case 3: {
+            Graph *dirGraphCopy = dirGraph->clone();
+            int *vertices = console.getVerticesToPath();
+            algorithms.dijkstraList(*dirGraphCopy, vertices[0], vertices[1]);
+            delete[] vertices;
+            delete dirGraphCopy;
+            break;
+        }
+        case 4: {
+            Graph *dirGraphCopy = dirGraph->clone();
+            int *vertices = console.getVerticesToPath();
+            algorithms.bellmanFordList(*dirGraphCopy, vertices[0], vertices[1]);
+            delete[] vertices;
+            delete dirGraphCopy;
+            break;
+        }
+        case 5: {
+            Graph *dirGraphCopy = dirGraph->clone();
+            int *vertices = console.getVerticesToPath();
+            algorithms.fordFulkersonList(*dirGraphCopy, vertices[0], vertices[1]);
+            delete[] vertices;
+            delete dirGraphCopy;
+            break;
+        }
+    }
 }

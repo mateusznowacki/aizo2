@@ -24,7 +24,7 @@ public:
 
     void printAdjMatrix(bool print);
     void printAvailableVertices();
-
+    Graph* clone() const;
     void printAdjList(bool print);
 
 private:
