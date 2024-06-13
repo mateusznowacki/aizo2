@@ -164,7 +164,8 @@ int ConsoleManager::getTypeOptions() {
 }
 
 int *ConsoleManager::getVerticesToPath() {
-    int vertices[2];
+    int* vertices = new int[2];
+
     cout << "Podaj wierzchołek począktowy:" << endl;
     cin >> vertices[0];
     cout << "Podaj wierzchołek koncowy" << endl;

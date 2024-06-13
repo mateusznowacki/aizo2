@@ -32,7 +32,7 @@ void Algorithms::primMSTMatrix(Graph graph) {
         }
     }
 
-  //  printMST(parent, vertices, adjMatrix);
+    //  printMST(parent, vertices, adjMatrix);
     delete[] parent;
     delete[] key;
     delete[] mstSet;
@@ -67,7 +67,7 @@ void Algorithms::primMSTList(Graph graph) {
         }
     }
 
- //   printMST(parent, vertices, graph.getAdjMatrix());
+    //   printMST(parent, vertices, graph.getAdjMatrix());
     delete[] parent;
     delete[] key;
     delete[] mstSet;
@@ -87,8 +87,8 @@ int Algorithms::minKey(int key[], bool mstSet[], int vertices) {
 // Function to print the constructed MST stored in parent[]
 void Algorithms::printMST(int parent[], int n, int **graph) {
     //std::cout << "Edge \tWeight\n";
-  //  for (int i = 1; i < n; i++)
-        //std::cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
+    //  for (int i = 1; i < n; i++)
+    //std::cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
 }
 
 // Kruskal's algorithm using adjacency matrix
@@ -260,9 +260,9 @@ void Algorithms::dijkstraMatrix(Graph graph, int src, int dest) {
         }
     }
 
- //   std::cout << "Vertex \t Distance from Source\n";
-   // for (int i = 0; i < vertices; i++)
-     //   std::cout << i << " \t " << dist[i] << " \n";
+    //   std::cout << "Vertex \t Distance from Source\n";
+    // for (int i = 0; i < vertices; i++)
+    //   std::cout << i << " \t " << dist[i] << " \n";
 
     delete[] dist;
     delete[] sptSet;
@@ -293,9 +293,9 @@ void Algorithms::dijkstraList(Graph graph, int src, int dest) {
         }
     }
 
- //   std::cout << "Vertex \t Distance from Source\n";
-  //  for (int i = 0; i < vertices; i++)
-      //  std::cout << i << " \t " << dist[i] << " \n";
+    //   std::cout << "Vertex \t Distance from Source\n";
+    //  for (int i = 0; i < vertices; i++)
+    //  std::cout << i << " \t " << dist[i] << " \n";
 
     delete[] dist;
     delete[] sptSet;
@@ -334,7 +334,7 @@ void Algorithms::bellmanFordMatrix(Graph graph, int src, int dest) {
     for (int i = 0; i < vertices; i++)
         //std::cout << i << " \t " << dist[i] << " \n";
 
-    delete[] dist;
+        delete[] dist;
 }
 
 void Algorithms::bellmanFordList(Graph graph, int src, int dest) {
@@ -374,7 +374,7 @@ void Algorithms::bellmanFordList(Graph graph, int src, int dest) {
     for (int i = 0; i < vertices; i++)
         //std::cout << i << " \t " << dist[i] << " \n";
 
-    delete[] dist;
+        delete[] dist;
 }
 
 // Ford-Fulkerson algorithm using adjacency matrix
@@ -730,12 +730,24 @@ void Algorithms::fordFulkersonList(Graph graph, int source, int sink, bool print
     }
 
     Graph::Node **adjList = graph.getAdjList();
+    if (adjList == nullptr) {
+        std::cerr << "adjList is null" << std::endl;
+        return;  // lub odpowiednia obsługa błędu
+    }
+
     for (int u = 0; u < vertices; u++) {
-        for (Graph::Node *node = adjList[u]; node != nullptr; node = node->next) {
+        Graph::Node *node = adjList[u];
+        while (node != nullptr) {
             int v = node->vertex;
+            if (v < 0 || v >= vertices) {
+                std::cerr << "Invalid vertex index: " << v << std::endl;
+                continue;  // lub odpowiednia obsługa błędu
+            }
             rGraph[u][v] = node->weight;
+            node = node->next;
         }
     }
+
 
     int *parent = new int[vertices];
     int maxFlow = 0;

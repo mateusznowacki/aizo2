@@ -109,6 +109,16 @@ int *Graph::getTwoDifferentVertices() {
 
 }
 
+void Graph::printAvailableVertices() {
+    std::cout << "Dostępne wierzchołki: ";
+    for (int i = 0; i < vertices; ++i) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+}
+
+
+
 // Funkcja drukująca listę sąsiedztwa
 void Graph::printAdjList(bool print) {
     if (print == true) {

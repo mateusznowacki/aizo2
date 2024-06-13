@@ -326,18 +326,20 @@ void Controller::getDataFromFileAndSort() {
             {
                 int pathChoice = console.printShortPathAlgorithmsOptions();
                 int reprezentationType = console.getTypeOptions();
+                dirGraph->printAvailableVertices();
                 int *vertices = console.getVerticesToPath();
                 if (pathChoice == 1) {
                     if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1], true);
+
+                        algorithms.dijkstraList(*dirGraph, vertices[0], vertices[1]);
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1], true);
+                        algorithms.dijkstraMatrix(*dirGraph, vertices[0], vertices[1] );
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
@@ -346,14 +348,14 @@ void Controller::getDataFromFileAndSort() {
                 } else if (pathChoice == 2) {
                     if (reprezentationType == 2) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1], true);
+                        algorithms.bellmanFordMatrix(*dirGraph, vertices[0], vertices[1] );
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;
                         break;
                     } else if (reprezentationType == 1) {
                         start = chrono::high_resolution_clock::now();
-                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1], true);
+                        algorithms.bellmanFordList(*dirGraph, vertices[0], vertices[1] );
                         end = chrono::high_resolution_clock::now();
                         chrono::microseconds duration = chrono::duration_cast<chrono::microseconds>(end - start);
                         cout << "Czas trwania: " << duration.count() << " mikrosekund" << endl;

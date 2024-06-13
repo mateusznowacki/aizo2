@@ -23,6 +23,7 @@ public:
     int *getTwoDifferentVertices();
 
     void printAdjMatrix(bool print);
+    void printAvailableVertices();
 
     void printAdjList(bool print);
 
@@ -31,6 +32,7 @@ private:
     int vertices; // Liczba wierzchołków
     int **adjMatrix; // Macierz sąsiedztwa
     Node **adjList; // Lista następników
+
 
 };
 
